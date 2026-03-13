@@ -3,14 +3,6 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 function MainLayout() {
   const location = useLocation();
 
-  const navLinks = [
-    { to: "/generos", label: "Géneros" },
-    { to: "/directores", label: "Directores" },
-    { to: "/productoras", label: "Productoras" },
-    { to: "/tipos", label: "Tipos" },
-    { to: "/media", label: "Media" },
-  ];
-
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -33,18 +25,52 @@ function MainLayout() {
 
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
-              {navLinks.map(({ to, label }) => (
-                <li className="nav-item" key={to}>
-                  <Link
-                    className={`nav-link ${
-                      location.pathname === to ? "active fw-medium" : ""
-                    }`}
-                    to={to}
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
+
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${location.pathname === "/generos" ? "active fw-medium" : ""}`}
+                  to="/generos"
+                >
+                  Géneros
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${location.pathname === "/directores" ? "active fw-medium" : ""}`}
+                  to="/directores"
+                >
+                  Directores
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${location.pathname === "/productoras" ? "active fw-medium" : ""}`}
+                  to="/productoras"
+                >
+                  Productoras
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${location.pathname === "/tipos" ? "active fw-medium" : ""}`}
+                  to="/tipos"
+                >
+                  Tipos
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${location.pathname === "/media" ? "active fw-medium" : ""}`}
+                  to="/media"
+                >
+                  Media
+                </Link>
+              </li>
+
             </ul>
           </div>
         </div>
