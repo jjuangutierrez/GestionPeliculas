@@ -59,10 +59,10 @@ function Medias() {
   const [tipos, setTipos] = useState<Tipo[]>([]);
 
   useEffect(() => {
-    generoService.getGeneros().then(setGeneros).catch(() => {});
-    directorService.getDirectores().then(setDirectores).catch(() => {});
-    productoraService.getProductoras().then(setProductoras).catch(() => {});
-    tipoService.getTipos().then(setTipos).catch(() => {});
+    generoService.getGeneros().then(setGeneros).catch(() => { });
+    directorService.getDirectores().then(setDirectores).catch(() => { });
+    productoraService.getProductoras().then(setProductoras).catch(() => { });
+    tipoService.getTipos().then(setTipos).catch(() => { });
   }, []);
 
   const handleCancel = () => {
@@ -159,11 +159,28 @@ function Medias() {
                 <input
                   name="imagen"
                   type="text"
-                  className="form-control"
+                  className="form-control mb-2"
                   value={form.imagen}
                   onChange={handleChange}
                   required
                 />
+
+                {form.imagen && (
+                  <div className="text-center">
+                    <img
+                      src={form.imagen}
+                      alt="Vista previa de la media"
+                      className="img-thumbnail shadow-sm"
+                      style={{ maxHeight: "200px", objectFit: "contain" }}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                      onLoad={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'block';
+                      }}
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="col-12 col-md-3">
@@ -295,6 +312,7 @@ function Medias() {
                 <thead className="table-light">
                   <tr>
                     <th style={{ width: 48 }}>#</th>
+                    <th style={{ width: 60, textAlign: "center" }}>Img</th>
                     <th style={{ width: 100 }}>Serial</th>
                     <th>Título</th>
                     <th style={{ width: 80 }}>Año</th>
@@ -310,6 +328,21 @@ function Medias() {
                   {items.map((m, i) => (
                     <tr key={m._id}>
                       <td className="text-muted small">{i + 1}</td>
+
+                      <td className="text-center">
+                        {m.imagen && (
+                          <img
+                            src={m.imagen}
+                            alt={`Portada de ${m.titulo}`}
+                            className="rounded shadow-sm"
+                            style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).style.display = 'none';
+                            }}
+                          />
+                        )}
+                      </td>
+
                       <td className="small">{m.serial}</td>
                       <td>{m.titulo}</td>
                       <td>{m.anioEstreno}</td>

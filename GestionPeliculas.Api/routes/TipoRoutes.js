@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
-const Tipo = require("../models/tipoModule");
+const Tipo = require("../models/TipoModule");
 const validarCampos = require("../middlewares/ValidarCampos");
 
 const router = Router();

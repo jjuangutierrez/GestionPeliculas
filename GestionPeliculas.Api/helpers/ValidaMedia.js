@@ -1,7 +1,7 @@
 const Genero = require("../models/GeneroModule");
 const Director = require("../models/DirectorModule");
 const Productora = require("../models/ProductoraModule");
-const Tipo = require("../models/tipoModule");
+const Tipo = require("../models/TipoModule");
 
 const validarGeneroActivo = async (id) => {
   const genero = await Genero.findById(id);
